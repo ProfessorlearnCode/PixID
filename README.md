@@ -45,7 +45,7 @@ To create a **smart, secure, and offline-first facial recognition system** that:
 |----------------|---------------------------------|
 | Camera Board    | ESP32-S3 CAM                   |
 | Server Backend  | Flask (Python)                 |
-| Recognition     | `face_recognition` (ArcFace)   |
+| Recognition     | `DeepFace` (ArcFace)   |
 | Communication   | HTTP (image POST to Flask)     |
 | Storage         | CSV log, local known_faces DB  |
 | Triggering      | Manual + IR gesture-based      |
@@ -59,7 +59,12 @@ To create a **smart, secure, and offline-first facial recognition system** that:
 app/
 ├── app.py                   ← Main Flask server
 ├── data/
-│   ├── embeds/              ← Known faces & embeddings.pkl
+│   ├── embeds/              ← Eembeddings.pkl
+│   ├── imgDataset           ← Training images
+│   │   └── known_faces/     ← Original photo records
+│   │   │   └── person1/
+│   │   │   └── person2/
+│   │   │   └── person3/
 │   ├── logs/                ← Attendance CSV file
 │   └── processed/           ← Original photo records
 ├── templates/               ← Frontend HTML pages
@@ -107,8 +112,8 @@ Server will listen at `http://192.168.4.1:5000` (ESP32’s network)
 
 ### 3. 📂 Enroll Faces
 
-* Add clear, front-facing images in `dataset/known_faces/`
-* Filenames will be used as names (e.g., `farzam.jpg` → "Farzam")
+* Add clear, front-facing images in `imgdataset/known_faces/`
+* Filenames will be used as (e.g., `1.jpg` → "in /Farzam")
 
 ---
 
