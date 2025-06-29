@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Records</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Optional auto-refresh every 10 seconds -->
+  <!-- <meta http-equiv="refresh" content="10"> -->
+</head>
+<body>
+  <div class="container">
+    <h1>📋 Attendance Records</h1>
+
+    {% if records %}
+    <table class="attendance-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Person</th>
+          <!-- <th>Face Snapshot</th> -->
+          <th>Confidence (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in records %}
+        <tr>
+          <td>{{ row.timestamp }}</td>
+          <td>{{ row.person }}</td>
+          <!-- <td>
+            {% if row.image %}
+              <img src="{{ url_for('static', filename='uploads/' ~ row.image) }}" alt="Face" class="thumbnail">
+            {% else %}
+              <span>No image</span>
+            {% endif %} -->
+          </td>
+          <td>{{ row.confidence }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>No attendance records found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
